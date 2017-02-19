@@ -1,0 +1,6 @@
+<form #registerForm="ngForm" (ngSubmit)="register()">
+  <input type="email" name="email" placeholder="Email" [(ngModel)]="user.email">
+  <input type="text" name="name" placeholder="Name" [(ngModel)]="user.name">
+  <input type="password" name="password" placeholder="Password" [(ngModel)]="user.plainPassword">
+  <input type="submit" name="submit" value="Register">
+</form>
