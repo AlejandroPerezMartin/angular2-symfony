@@ -1,0 +1,33 @@
+@import 'variables';
+
+@import "~angular2-mdl/scss/color-definitions";
+
+$color-primary: $primary;
+$color-primary-dark: $primary-dark;
+$color-accent: $primary;
+$color-primary-contrast: $secondary;
+$color-accent-contrast: $secondary-dark;
+
+@import '~angular2-mdl/scss/material-design-lite';
+
+/* Global styles */
+body {
+  background: $secondary;
+  background: -moz-linear-gradient(top,  $secondary 0%, $primary 100%);
+  background: -webkit-linear-gradient(top,  $secondary 0%,$primary 100%);
+  background: linear-gradient(to bottom,  $secondary 0%,$primary 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$secondary', endColorstr='$primary',GradientType=0 );
+}
+
+.mdl-layout {
+	align-items: center;
+  justify-content: center;
+}
+.mdl-layout__content {
+	padding: 24px;
+	flex: none;
+}
+
+.error-message {
+  color: red;
+}

@@ -3,15 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { MdlModule } from 'angular2-mdl';
 
 import { AppRoutes } from './app.routes';
+
+import { IdeasModule } from './ideas/ideas.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 
-import { HttpClient, AuthService } from './services';
+import { HttpClient, AuthService, IdeasService } from './_services';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,11 @@ import { HttpClient, AuthService } from './services';
     BrowserModule,
     FormsModule,
     HttpModule,
+    MdlModule,
+    IdeasModule,
     RouterModule.forRoot(AppRoutes)
   ],
-  providers: [ HttpClient, AuthService ],
+  providers: [ HttpClient, AuthService, IdeasService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
