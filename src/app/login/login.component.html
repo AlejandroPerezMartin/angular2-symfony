@@ -1,5 +1,8 @@
-<form #loginForm="ngForm" (ngSubmit)="doLogin()">
+<h3>Login</h3>
+<form #loginForm="ngForm" (ngSubmit)="login()">
   <input type="email" name="email" [(ngModel)]="user.email" placeholder="Email">
   <input type="password" name="password" [(ngModel)]="user.password" placeholder="Password">
   <input type="submit" name="submit" value="Login">
 </form>
+
+<button routerLink="/register" routerLinkActive="active">Go to registration form</button>

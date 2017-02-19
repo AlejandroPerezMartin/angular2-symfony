@@ -9,7 +9,7 @@ export class HttpClient {
 
   public apiUrl: string = environment.API_URL;
 
-  private headers = new Headers({
+  public headers = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded'
   });
 

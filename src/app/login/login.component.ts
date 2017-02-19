@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observer } from 'rxjs';
+
 import { AuthService } from '../services';
+
+import { User } from '../shared/models/user.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  user: any = {};
+  private user: any = {};
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-  }
-
-  doLogin() {
+  login() {
     this.authService.login(this.user.email, this.user.password)
       .subscribe(res => console.log(res));
   }

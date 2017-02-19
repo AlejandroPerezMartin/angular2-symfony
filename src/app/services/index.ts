@@ -1,2 +1,2 @@
-export { HttpClient } from './http-client';
-export { AuthService } from './auth.service';
+export * from './http-client';
+export * from './auth.service';

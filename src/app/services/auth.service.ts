@@ -3,13 +3,14 @@ import { Http, URLSearchParams } from '@angular/http';
 import { User } from '../shared/models/user.model';
 import { HttpClient } from './http-client';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 Injectable()
 export class AuthService {
 
-  public user: User;
+  public token: string;
 
   constructor(@Inject(Http) protected http: Http, @Inject(HttpClient) private rm: HttpClient) {}
 
@@ -27,20 +28,20 @@ export class AuthService {
       .catch(this.rm.handleError);
   }
 
-  register(user: User) {
+  register(name: string, password: string, email: string) {
 
-    let body = {
-      name: user.name,
-      plainPassword: user.plainPassword,
-      email: user.email
-    };
+    let data = new URLSearchParams();
+    data.append('name', name);
+    data.append('plainPassword', password);
+    data.append('email', email);
 
-    return this.http.post(`${this.rm.apiUrl}/api/register`, JSON.stringify(body), this.rm.options)
+    return this.http.post(`${this.rm.apiUrl}/api/register`, data, this.rm.options)
       .map(this.rm.extractData)
       .catch(this.rm.handleError);
   }
 
   logout() {
+    this.token = null;
     localStorage.removeItem('token');
   }
 

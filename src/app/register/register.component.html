@@ -1,6 +1,10 @@
+<h3>Register</h3>
+
 <form #registerForm="ngForm" (ngSubmit)="register()">
   <input type="email" name="email" placeholder="Email" [(ngModel)]="user.email">
   <input type="text" name="name" placeholder="Name" [(ngModel)]="user.name">
-  <input type="password" name="password" placeholder="Password" [(ngModel)]="user.plainPassword">
+  <input type="password" name="password" placeholder="Password" [(ngModel)]="user.password">
   <input type="submit" name="submit" value="Register">
 </form>
+
+<button routerLink="/login" routerLinkActive="active">Go to login form</button>
