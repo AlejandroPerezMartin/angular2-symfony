@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { HttpClient } from './http-client';
 import { AuthService} from './auth.service';
-import { Idea } from '../shared/models/idea.model';
+import { Idea } from '../_models/idea.model';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
