@@ -12,6 +12,7 @@ $color-accent-contrast: $secondary-dark;
 
 /* Global styles */
 body {
+  background-attachment: fixed;
   background: $secondary;
   background: -moz-linear-gradient(top,  $secondary 0%, $primary 100%);
   background: -webkit-linear-gradient(top,  $secondary 0%,$primary 100%);
@@ -29,5 +30,5 @@ body {
 }
 
 .error-message {
-  color: red;
+  color: rgb(213,0,0);
 }

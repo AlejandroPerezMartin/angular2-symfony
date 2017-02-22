@@ -15,7 +15,7 @@ export class HttpClient {
     'Content-Type': 'application/x-www-form-urlencoded'
   });
 
-  public options = new RequestOptions({ headers: this.headers, withCredentials: false });
+  public options = new RequestOptions({ headers: this.headers, withCredentials: true });
 
   public extractData(res: Response) {
     let body = res.json();

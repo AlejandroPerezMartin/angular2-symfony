@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { MdlModule } from 'angular2-mdl';
+import { IdeasModule } from './ideas/ideas.module';
 
 import { AppRoutes } from './app.routes';
-
-import { IdeasModule } from './ideas/ideas.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -21,7 +20,7 @@ import { HttpClient, AuthService, IdeasService } from './_services';
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

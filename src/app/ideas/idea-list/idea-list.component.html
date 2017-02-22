@@ -1,3 +1,30 @@
-<p>
-  idea-list works!
-</p>
+<mdl-card mdl-shadow="2" style="max-width:600px">
+
+    <mdl-card-title mdl-card-expand>
+      <h2 mdl-card-title-text>List of ideas</h2>
+    </mdl-card-title>
+
+    <mdl-card-supporting-text>
+      <mdl-spinner [hidden]="!loading" [active]="loading"></mdl-spinner>
+
+      <h5 [hidden]="loading || ideas.length > 0">No ideas added yet!</h5>
+
+      <mdl-list *ngIf="ideas.length > 0">
+        <mdl-list-item lines="3" mdl-ripple *ngFor="let idea of ideas" [routerLink]="['/ideas', 'view', idea.id]">
+          <mdl-list-item-primary-content>
+            <mdl-icon mdl-list-item-avatar>person</mdl-icon>
+            <span>{{idea.user.name}} <small>({{idea.updatedAt | date}})</small></span>
+            <mdl-list-item-text-body>
+              {{idea.description}}
+            </mdl-list-item-text-body>
+          </mdl-list-item-primary-content>
+        </mdl-list-item>
+      </mdl-list>
+    </mdl-card-supporting-text>
+
+    <mdl-card-actions>
+      <button mdl-button mdl-button-type="raised" mdl-colored="accent" mdl-ripple (click)="openNewDialog()">New idea</button>
+    </mdl-card-actions>
+</mdl-card>
+
+<app-new-idea #newIdeaDialog (ideaAdded)="onIdeaAdded($event)"></app-new-idea>

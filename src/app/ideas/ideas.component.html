@@ -1,8 +1,4 @@
 
-<div class="mdl-layout mdl-js-layout">
-	<main class="mdl-layout__content">
-      <div class="mdl-card mdl-shadow--6dp">
-        <router-outlet></router-outlet>
-      </div>
-  </main>
-</div>
+<router-outlet></router-outlet>
+
+<p><a routerLink="/login" (click)="doLogout()">Logout</a></p>

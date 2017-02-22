@@ -11,8 +11,6 @@ import 'rxjs/add/operator/catch';
 Injectable();
 export class AuthService {
 
-  public token: string;
-
   constructor(@Inject(Http) protected http: Http, @Inject(HttpClient) private rm: HttpClient) {}
 
   login(username: string, password: string): Observable<boolean> {
@@ -29,17 +27,26 @@ export class AuthService {
         let token = response.json().access_token;
 
         if (token) {
-          this.token = token;
           localStorage.setItem('token', token);
-          return true;
+          return token;
         }
         return false;
       })
       .catch(this.rm.handleError);
   }
 
-  isUserLogged() {
-    return this.token || false;
+  isUserLogged(): Promise<boolean> {
+    return new Promise<boolean> ((resolve, reject) => {
+      if (!!localStorage.getItem('token')) {
+        resolve(true);
+      } else {
+        reject(false);
+      }
+    });
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token') || null;
   }
 
   register(name: string, password: string, email: string) {
@@ -55,7 +62,6 @@ export class AuthService {
   }
 
   logout() {
-    this.token = null;
     localStorage.removeItem('token');
   }
 

@@ -1,0 +1,22 @@
+<mdl-dialog #newIdeaDialog
+            [mdl-dialog-config]="{
+              clickOutsideToClose: !loading,
+              styles:{'width': '300px'},
+              isModal:true,
+              enterTransitionDuration: 400,
+              leaveTransitionDuration: 400}"
+              (hide)="onDialogHide()">
+  <h3 class="mdl-dialog__title">New idea</h3>
+  <div class="mdl-dialog__content">
+    <form #newIdeaForm="ngForm" (ngSubmit)="createIdea()" novalidate>
+      <mdl-textfield name="title" type="text" label="Title" [(ngModel)]="idea.title" floating-label autofocus required></mdl-textfield>
+      <mdl-textfield name="description" type="text" label="Description" [(ngModel)]="idea.description" floating-label required></mdl-textfield>
+    </form>
+    <p *ngIf="errors" class="error-message">{{errors}}</p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <mdl-spinner [active]="loading"></mdl-spinner>
+    <button mdl-button (click)="createIdea()" mdl-button-type="raised" mdl-colored="accent" mdl-ripple [disabled]="newIdeaForm.invalid || loading">Create</button>
+    <button mdl-button (click)="newIdeaDialog.close()" [disabled]="loading" mdl-ripple>Cancel</button>
+  </div>
+</mdl-dialog>

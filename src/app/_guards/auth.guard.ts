@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, CanActivateChild } from '@angular/router';
 
+import { AuthService } from '../_services/auth.service';
+
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
 
-    constructor(private router: Router) { }
+    constructor(private authService: AuthService, private router: Router) { }
 
     canActivate() {
         return this.checkLogged();
@@ -14,11 +16,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return this.checkLogged();
     }
 
-    private checkLogged(): boolean {
-        if (localStorage.getItem('token')) {
+    private checkLogged() {
+        return this.authService.isUserLogged()
+        .then((res) => {
           return true;
-        }
-        this.router.navigate(['/login']);
-        return false;
+        })
+        .catch((err) => {
+          this.router.navigate(['login']);
+          return false;
+        });
     }
 }

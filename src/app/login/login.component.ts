@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services';
-
 import { Router } from '@angular/router';
+
+import { MdlSnackbarService } from 'angular2-mdl';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,17 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private user: any = {};
+  @ViewChild('loginForm') loginForm: NgForm;
 
-  private error: string;
+  private user: any = {};
   private loading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private mdlSnackbarService: MdlSnackbarService) { }
 
   ngOnInit() {
-    if (this.authService.isUserLogged()) {
-      this.router.navigate(['/ideas']);
-    }
+    this.authService.isUserLogged()
+      .then(() => this.router.navigate(['/ideas']))
+      .catch(() => console.log());
   }
 
   login() {
@@ -29,12 +30,15 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user.email, this.user.password)
       .subscribe(res => {
         if (res) {
-          this.router.navigate(['ideas']);
+          this.router.navigate(['/ideas']);
         } else {
           this.loading = false;
         }
       }, err => {
-        this.error = err.error_description;
+        this.mdlSnackbarService.showSnackbar({
+          message: err.error_description
+        });
+        this.user.password = '';
         this.loading = false;
       });
   }

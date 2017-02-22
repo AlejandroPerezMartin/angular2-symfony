@@ -15,7 +15,7 @@ export const IdeasRoutes: Routes = [
     children: [
         {  path: '', redirectTo: 'list', pathMatch: 'full' },
         {  path: 'list', component: IdeaListComponent },
-        {  path: 'idea', component: IdeaComponent }
-		]
-	}
+        {  path: 'view/:id', component: IdeaComponent }
+    ]
+  }
 ];

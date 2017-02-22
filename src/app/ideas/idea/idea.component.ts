@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
+import { Idea } from '../../_models/idea.model';
+import { IdeasService } from '../../_services/ideas.service';
 
 @Component({
   selector: 'app-idea',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdeaComponent implements OnInit {
 
-  constructor() { }
+  @Input() idea: Idea;
+
+  constructor(private ideasService: IdeasService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.forEach((params: Params) => {
+      if (params['id'] !== undefined) {
+        let id = +params['id'];
+        this.ideasService.getIdea(id).subscribe(
+          idea => {
+            this.idea = idea;
+          },
+          err => this.redirectToList()
+        );
+      } else {
+        this.redirectToList();
+      }
+    });
+  }
+
+  save() {
+    this.ideasService.updateIdea(this.idea).subscribe(() => this.redirectToList());
+  }
+
+  redirectToList() {
+    this.router.navigate(['/ideas', 'list']);
   }
 
 }
