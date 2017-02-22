@@ -31,8 +31,8 @@ export class IdeaListComponent implements OnInit {
     this.newIdeaDialog.show();
   }
 
-  onIdeaAdded(ev) {
-    console.log(ev);
+  onIdeaAdded(idea) {
+    this.ideas.push(idea);
   }
 
 }

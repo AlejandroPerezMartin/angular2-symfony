@@ -1,9 +1,10 @@
-<mdl-card mdl-shadow="2" *ngIf="idea">
+<mdl-card mdl-shadow="4" *ngIf="idea">
     <mdl-card-title mdl-card-expand>
       <h2 mdl-card-title-text>Idea: {{idea.title}}</h2>
     </mdl-card-title>
 
     <mdl-card-supporting-text>
+
       <form #ideaForm="ngForm" (ngSubmit)="save()" novalidate>
         <div class="mdl-card__supporting-text">
             <mdl-textfield name="title" type="text" label="Title" [(ngModel)]="idea.title" autofocus floating-label required></mdl-textfield>
@@ -14,6 +15,9 @@
 
     <mdl-card-actions mdl-card-border>
       <button mdl-button mdl-button-type="raised" mdl-colored="accent" mdl-ripple type="submit" (click)="save()" name="submit" [disabled]="ideaForm.invalid || ideaForm.pristine || loading">Save</button>
+      <button mdl-button mdl-button-type="icon" (click)="delete()">
+        <mdl-icon>delete</mdl-icon>
+      </button>
       <mdl-spinner [active]="loading"></mdl-spinner>
     </mdl-card-actions>
 </mdl-card>

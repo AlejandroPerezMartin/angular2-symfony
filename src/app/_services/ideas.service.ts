@@ -50,6 +50,14 @@ export class IdeasService {
       .catch(this.rm.handleError);
   }
 
+  deleteIdea(id: number) {
+    return this.http.delete(`${this.rm.apiUrl}/api/ideas/${id}`, this.options)
+      .map((response: Response) => {
+        return response.json();
+      })
+      .catch(this.rm.handleError);
+  }
+
   getIdea(id: number) {
     return this.http.get(`${this.rm.apiUrl}/api/ideas/${id}`, this.options)
       .map((response: Response) => {

@@ -12,12 +12,7 @@ $color-accent-contrast: $secondary-dark;
 
 /* Global styles */
 body {
-  background-attachment: fixed;
-  background: $secondary;
-  background: -moz-linear-gradient(top,  $secondary 0%, $primary 100%);
-  background: -webkit-linear-gradient(top,  $secondary 0%,$primary 100%);
-  background: linear-gradient(to bottom,  $secondary 0%,$primary 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$secondary', endColorstr='$primary',GradientType=0 );
+  background: #f5f5f5;
 }
 
 .mdl-layout {

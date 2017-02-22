@@ -35,6 +35,10 @@ export class IdeaComponent implements OnInit {
     this.ideasService.updateIdea(this.idea).subscribe(() => this.redirectToList());
   }
 
+  delete() {
+    this.ideasService.deleteIdea(this.idea.id).subscribe(() => this.redirectToList());
+  }
+
   redirectToList() {
     this.router.navigate(['/ideas', 'list']);
   }
